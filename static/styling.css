@@ -1,3 +1,7 @@
+.container-md {
+    text-align:center;
+    align-content: center;
+}
 #ip-form {
     width: 50%;
     background-color:#f1f1f1;
@@ -10,5 +14,9 @@
     margin-bottom:20px;
     color: #2C2927;
     align-content: center;
+    display: inline-block;
 
+}
+#submit-but {
+    margin-top: 8px;
 }
