@@ -32,7 +32,6 @@ function Homepage () {
     // gets the IP input and sends to server to get lat/long info
     const getInput = (evt) => {
         evt.preventDefault();
-        handleShow();
         
         const ipInfo = {"ip": ip}
         fetch('/api/latlong', {
@@ -53,10 +52,13 @@ function Homepage () {
                 setIP('');
             }            
     
-            // handling valid IP address
-            setLat(latInfo);
-            setLong(longInfo);
-            setIP('');
+            else {
+                // handling valid IP address
+                setLat(latInfo);
+                setLong(longInfo);
+                setIP('');
+                handleShow();
+            }
         })
     }
     return (
