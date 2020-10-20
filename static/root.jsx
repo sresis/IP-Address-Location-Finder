@@ -63,7 +63,7 @@ function Homepage () {
     }
     return (
         <Container fluid="md">
-            <Form>
+            <Form id ="ip-form">
                 <Form.Label>IP Address</Form.Label>
                 <Form.Control type="text"
                                 id = "ip-input"
