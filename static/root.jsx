@@ -1,7 +1,6 @@
 const Router = ReactRouterDOM.BrowserRouter;
 const Route = ReactRouterDOM.Route;
-const Link = ReactRouterDOM.Link;
-const Prompt = ReactRouterDOM.Prompt;
+
 const Switch = ReactRouterDOM.Switch;
 const Redirect = ReactRouterDOM.Redirect;
 const {Button, Alert, Col, Row, Form, FormControl, Container, Modal} = ReactBootstrap;
@@ -18,18 +17,21 @@ function App() {
     )
 }
 function Homepage () {
-    // ip address input
+    // IP address input
     const[ip, setIP] = React.useState("");
+    // Latitude and Longitude values
     const[lat, setLat] = React.useState("");
     const[long, setLong] = React.useState("");
+    
+    // Show modal. Starts as false.
     const [show, setShow] = React.useState(false);
-    // show modal
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
-    // gets the ip input
+    
+    // gets the IP input and sends to server to get lat/long info
     const getInput = (evt) => {
         evt.preventDefault();
-        setShow(true);
+        handleShow();
         
         const ipInfo = {"ip": ip}
         fetch('/api/latlong', {
@@ -42,13 +44,18 @@ function Homepage () {
         .then(res => res.json())
         .then(data => {
             const latInfo = data['latitude'];
-            const longInfo = data['longitude']            
+            const longInfo = data['longitude'];
+            // handling invalid IP address
+            if (latInfo === 'undefined') {
+                alert('Invalid input');
+                setIP('');
+            }            
+            
+            // handling valid IP address
             setLat(latInfo);
             setLong(longInfo);
             setIP('');
         })
-      
-        
     }
     return (
         <Container fluid="md">
@@ -60,7 +67,6 @@ function Homepage () {
                                 value = {ip}></Form.Control>
             </Form>
             <Button type="submit" onClick={getInput}>Submit</Button>
-            
             <Modal show ={show} animation={false}>
                 <Modal.Header closeButton onClick={handleClose}>
                     <Modal.Title>Location Details</Modal.Title>
@@ -73,12 +79,9 @@ function Homepage () {
                     <Button variant="outline-secondary" onClick={handleClose}>
                         Close
                 </Button>
-            
                 </Modal.Footer>
             </Modal>
-
         </Container>
-        
     )
 }
 ReactDOM.render(<App />, document.getElementById('root'))
