@@ -4,6 +4,7 @@ const Route = ReactRouterDOM.Route;
 const Switch = ReactRouterDOM.Switch;
 const Redirect = ReactRouterDOM.Redirect;
 const {Button, Alert, Col, Row, Form, FormControl, Container, Modal} = ReactBootstrap;
+
 function App() {
 
     return (
@@ -45,12 +46,13 @@ function Homepage () {
         .then(data => {
             const latInfo = data['latitude'];
             const longInfo = data['longitude'];
+            
             // handling invalid IP address
-            if (latInfo === 'undefined') {
+            if (latInfo === 'error') {
                 alert('Invalid input');
                 setIP('');
             }            
-            
+    
             // handling valid IP address
             setLat(latInfo);
             setLong(longInfo);
