@@ -69,8 +69,8 @@ function Homepage () {
                                 id = "ip-input"
                                 onChange = {e =>setIP(e.target.value)}
                                 value = {ip}></Form.Control>
+            <Button type="submit" id="submit-but" onClick={getInput}>Submit</Button>
             </Form>
-            <Button type="submit" onClick={getInput}>Submit</Button>
             <Modal show ={show} animation={false}>
                 <Modal.Header closeButton onClick={handleClose}>
                     <Modal.Title>Location Details</Modal.Title>
