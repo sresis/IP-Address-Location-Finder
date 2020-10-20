@@ -1,0 +1,5 @@
+flask
+redis
+geoip2
+python-geoip
+python-geoip-geolite2
