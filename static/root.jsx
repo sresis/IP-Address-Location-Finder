@@ -48,7 +48,7 @@ function Homepage () {
             const longInfo = data['longitude'];
             
             // handling invalid IP address
-            if (latInfo === 'error') {
+            if (data['latitude'] === 'error') {
                 alert('Invalid input');
                 setIP('');
             }            

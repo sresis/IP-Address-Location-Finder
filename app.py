@@ -9,8 +9,8 @@ cache = redis.Redis(host='redis', port=6379)
 
 @app.route('/')
 def root():
-	"""View the homepage."""
-	return render_template('root.html')
+    """View the homepage."""
+    return render_template('root.html')
 
 @app.route('/api/latlong', methods=['POST'])
 def get_lat_long():
@@ -22,14 +22,15 @@ def get_lat_long():
 
     # Get latitude and longitude data from GeoLite2 database
     reader = geoip2.database.Reader('GeoLite2-City_20201020/GeoLite2-City.mmdb')
-    response = reader.city(ip)
-    latitude = str(response.location.latitude)
-    longitude = str(response.location.longitude)
     
-    ## handle invalid IP address
-    if latitude == 'undefined' or longitude == 'undefined':
-        return jsonify({'latitude': 'error', 'longitude': 'error'})
-    ## handle valid IP address
-    else:
+    try:
+        # handle valid IP address
+        response = reader.city(ip)
+        latitude = str(response.location.latitude)
+        longitude = str(response.location.longitude)
         return jsonify({'latitude': latitude, 'longitude': longitude})
+    except:
+        # handle invalid IP address
+        return jsonify({'latitude': 'error', 'longitude': 'error'})
+    
 
