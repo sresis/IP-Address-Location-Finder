@@ -66,7 +66,8 @@ function Homepage () {
             <Form id ="ip-form">
                 <Form.Label>IP Address</Form.Label>
                 <Form.Control type="text"
-                                id = "ip-input"
+                                id = "ip"
+                                name="ip"
                                 onChange = {e =>setIP(e.target.value)}
                                 value = {ip}></Form.Control>
                 <Button type="submit" id="submit-but" onClick={getInput}>Submit</Button>

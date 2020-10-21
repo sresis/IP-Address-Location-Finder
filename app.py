@@ -32,5 +32,3 @@ def get_lat_long():
     except:
         # handle invalid IP address
         return jsonify({'latitude': 'error', 'longitude': 'error'})
-    
-
