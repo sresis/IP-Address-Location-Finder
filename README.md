@@ -7,10 +7,11 @@ The IP Address Location Finder enables users to input an IP address and get its 
 git clone https://github.com/sresis/IP-Address-Location-Finder.git
 ```
 * Build the container for service. 
+  * *This command also runs the test file. You should see **OK** once the tests have completed.*
+
 ```bash
 docker-compose build
 ```
-*This command also runs the test file. You should see **OK** once the tests have completed.*
 * Launch the project
 ```bash
 docker-compose up
