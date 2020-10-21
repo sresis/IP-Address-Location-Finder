@@ -1,0 +1,9 @@
+FROM ubuntu:trusty
+
+RUN apt-get update && apt-get install -yq curl && apt-get clean
+
+WORKDIR /app
+
+ADD tests.py /app/tests.py
+
+CMD ["bash", "tests.py"]
